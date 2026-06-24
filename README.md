@@ -1,4 +1,5 @@
 # team02
-Takahashi Mitsuki
 
 Saiki Sota
+
+Takahashi Mitsuki
