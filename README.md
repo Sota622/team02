@@ -1,2 +1,6 @@
 # team02
-塚本堅都
+
+Saiki Sota
+Tsukamoto Kento
+Takahashi Mitsuki
+
