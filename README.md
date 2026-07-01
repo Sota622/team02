@@ -4,3 +4,5 @@ Takahashi Mitsuki
 Tsukamoto Kento
 
 Saiki Sota
+
+ABE Kamui
