@@ -32,7 +32,7 @@
     Trash
       │
       ▼
-     TrashBox
+　TrashBox
 ```
 
 GameManager がゲーム全体を管理し、各クラスを利用してゲームを進行する。
