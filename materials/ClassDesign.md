@@ -22,7 +22,7 @@
 # クラスの関係
 
 ```text
-              GameManager
+        GameManager
       ┌──────┼────────┐
       │      │        │
       ▼      ▼        ▼
