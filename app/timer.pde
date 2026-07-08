@@ -24,6 +24,6 @@ class Timer {
 
 
     if (time == 0){
-    //gamemaneger内で実装
+    //gamemanager内で実装
     }
 }
