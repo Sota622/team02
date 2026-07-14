@@ -97,7 +97,7 @@ Abe Kamui
 
 ## 主担当
 
-ー
+Takahashi Mitsuki
 
 ### 属性
 
