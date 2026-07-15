@@ -1,43 +1,34 @@
 class Timer {
 
-  int time = 60;
-  int count = 0;
+  int limit = 60;
+  int startTime;
 
+  Timer() {
+    reset();
+  }
+
+  void reset() {
+    startTime = millis();
+  }
 
   void update() {
-
-    count++;
-
-    if (count >= 60) {
-
-      time--;
-      count = 0;
-
-    }
-
-
-    if (time < 0) {
-
-      time = 0;
-
-    }
-
+    // 特に処理なし
   }
-
 
   void display() {
+    int remain = limit - (millis() - startTime) / 1000;
+
+    if (remain < 0) {
+      remain = 0;
+    }
 
     textSize(30);
-    text("残り時間 : " + time, 20, 40);
-
+    fill(0);
+    text("残り時間 : " + remain, 20, 40);
   }
 
-
-  //時間終了判定
   boolean isFinish() {
-
-    return time == 0;
-
+    return (millis() - startTime) >= limit * 1000;
   }
 
 }
