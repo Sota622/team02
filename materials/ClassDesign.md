@@ -122,7 +122,7 @@ Takahashi Mitsuki
 
 ## 主担当
 
-ー
+Tsukamoto Kento
 
 ### 属性
 
