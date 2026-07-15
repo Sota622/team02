@@ -1,14 +1,14 @@
 GameManager gameManager;
 
-
 void setup() {
+
+  print("START");
 
   size(800, 600);
 
   gameManager = new GameManager();
 
 }
-
 
 void draw() {
 
@@ -17,17 +17,8 @@ void draw() {
   gameManager.display();
 
 }
-
-
-void mousePressed() {
+void mousePressed(){
 
   gameManager.mousePressed();
-
-}
-
-
-void mouseReleased() {
-
-  gameManager.mouseReleased();
 
 }
