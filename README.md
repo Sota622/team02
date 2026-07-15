@@ -317,21 +317,9 @@
 
 ## 保留事項
 
-- 1 Bin と TrashBox を統一する（最優先）
-
-現在、
-
-ClassDesign.md → TrashBox
-実装（GameManager） → Bin
-
-となっている。
-このままだと設計書とコードが一致しないので、
-
-TrashBox に統一する
-Bin に統一する
-
-どちらかを決める。
-
+- 1 BinとTrashBoxの統一
+  解決済み
+  
 - 2 ScoreManager の仕様
 
 現在は実装とREADMEで少し異なる。
