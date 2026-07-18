@@ -4,7 +4,9 @@ final int HEIGHT = 600;
 GameManager gameManager;
 
 void setup() {
-  size(WIDTH, HEIGHT);
+  println("setup start");
+  size(800, 600);
+  
   smooth();
   frameRate(60);
 
