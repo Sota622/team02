@@ -1,19 +1,17 @@
 class ScoreManager {
 
-  int score;
+  int score = 0;
 
-  ScoreManager() {
-    score = 0;
-  }
-
-  // 正解
+  // 正しく分別
   void addScore() {
     score++;
   }
 
-  // 不正解
+  // 誤った分別
   void minusScore() {
-    score--;
+    if (score > 0) {
+      score--;
+    }
   }
 
   // 初期化
@@ -26,6 +24,7 @@ class ScoreManager {
     return score;
   }
 
+  // 表示
   void display() {
     textSize(30);
     fill(0);

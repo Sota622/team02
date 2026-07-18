@@ -48,18 +48,21 @@ class TrashBox {
     }
   }
 
-  // ゴミ箱の中に入ったか判定
-  boolean checkHit(Trash trash) {
+  // ゴミ箱の中に入っているか
+  boolean contains(Trash trash) {
 
-    if (trash.x >= x &&
-        trash.x <= x + w &&
-        trash.y >= y &&
-        trash.y <= y + h) {
+    return (trash.x >= x &&
+            trash.x <= x + w &&
+            trash.y >= y &&
+            trash.y <= y + h);
 
-      return trash.getType() == type;
-    }
+  }
 
-    return false;
+  // ゴミの種類が正しいか
+  boolean isCorrect(Trash trash) {
+
+    return trash.getType() == type;
+
   }
 
 }
