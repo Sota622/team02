@@ -1,316 +1,348 @@
 class GameManager {
 
-  PImage titleImage;
+PImage titleImage;
+PImage haikeiImage;
+PImage resultImage;
 
-  // ===== 画面 =====
-  final int TITLE = 0;
-  final int PLAY = 1;
-  final int RESULT = 2;
+final int TITLE = 0;
+final int PLAY = 1;
+final int RESULT = 2;
 
-  int scene = TITLE;
+int scene = TITLE;
 
-  // ===== ゲームで使うクラス =====
-  Timer timer;
-  ScoreManager score;
+Timer timer;
+ScoreManager score;
+Trash trash;
+TrashBox[] boxes;
 
-  Trash trash;
-  TrashBox[] boxes;
+Button startButton;
+Button retryButton;
+Button homeButton;
+Button resumeButton;
 
-  Button startButton;
-  Button retryButton;
+boolean pause = false;
 
-  // ===== ゴミデータ =====
-  String[] trashNames = {
-    "生ごみ",
-    "ティッシュ",
-    "フライパン",
-    "乾電池",
-    "空き缶",
-    "ガラスびん",
-    "新聞紙",
-    "ペットボトル"
-  };
+String[] trashNames = {
+  "生ごみ",
+  "ティッシュ",
+  "フライパン",
+  "乾電池",
+  "空き缶",
+  "ガラスびん",
+  "新聞紙",
+  "ペットボトル"
+};
+String[] trashImages = {
+"生ごみ.png",
+"ティッシュ.png",
+"フライパン.png",
+"乾電池.png",
+"空き缶.png",
+"ガラスびん.png",
+"新聞紙.png",
+"ペットボトル.png"
+};
 
-  int[] trashTypes = {
-    0,
-    0,
-    1,
-    1,
-    2,
-    2,
-    3,
-    3
-  };
+int[] trashTypes = {
+  0,
+  0,
+  1,
+  1,
+  2,
+  2,
+  3,
+  3
+};
 
-  GameManager() {
+GameManager() {
 
-    titleImage = loadImage("title.png");
+  titleImage = loadImage("title.png");
+  haikeiImage = loadImage("haikei.png");
+  resultImage = loadImage("結果.png");
 
-    timer = new Timer();
-    score = new ScoreManager();
+  timer = new Timer();
+  score = new ScoreManager();
 
-    // ===== ゴミ箱生成 =====
-    boxes = new TrashBox[4];
+  boxes = new TrashBox[4];
 
-    boxes[0] = new TrashBox(0, 40, 500, 160, 80);
-    boxes[1] = new TrashBox(1, 220, 500, 160, 80);
-    boxes[2] = new TrashBox(2, 400, 500, 160, 80);
-    boxes[3] = new TrashBox(3, 580, 500, 160, 80);
+  boxes[0] = new TrashBox(0, 80, 420, 140, 80);
+  boxes[1] = new TrashBox(1, 245, 420, 140, 80);
+  boxes[2] = new TrashBox(2, 410, 420, 140, 80);
+  boxes[3] = new TrashBox(3, 580, 420, 140, 80);
 
-    trash = null;
+  trash = null;
 
-    // タイトル画面のSTARTボタン
-    startButton = new Button(
-      280,
-      400,
-      190,
-      70,
-      "START"
-    );
+  startButton = new Button(320,388,175,90,"START");
 
-    // 結果画面のRETRYボタン
-    retryButton = new Button(
-      280,
-      400,
-      190,
-      70,
-      "RETRY"
-    );
+resumeButton = new Button(300,300,200,60,"RESUME");
 
-  }
+retryButton = new Button(300,378,200,62,"RETRY");
 
-  //========================
-  // 更新処理
-  //========================
-  void update() {
+homeButton = new Button(300,450,200,60,"HOME");
+}
 
-    if (scene == PLAY) {
+void update() {
 
-      timer.update();
+  if(scene == PLAY && pause == false) {
 
-      if (timer.isFinish()) {
-        scene = RESULT;
-      }
+    timer.update();
 
+    if(timer.isFinish()) {
+      scene = RESULT;
     }
 
   }
 
-  //========================
-  // 描画処理
-  //========================
-  void display() {
+}
 
-    if (scene == TITLE) {
+void display() {
 
-      image(titleImage, 0, 0, width, height);
-      startButton.display();
+  if(scene == TITLE) {
 
+    image(titleImage,0,0,width,height);
+    startButton.display();
+
+  } else if(scene == PLAY) {
+
+    image(haikeiImage,0,0,width,height);
+
+    timer.display();
+    score.display();
+
+    for(int i=0;i<boxes.length;i++) {
+      boxes[i].display();
     }
 
-    else if (scene == PLAY) {
-
-      background(255);
-
-      // タイマー
-      timer.display();
-
-      // スコア
-      score.display();
-
-      // ゴミ箱
-      for (int i = 0; i < boxes.length; i++) {
-        boxes[i].display();
-      }
-
-      // ゴミ
-      if (trash != null) {
-        trash.display();
-      }
-
+    if(trash != null) {
+      trash.display();
     }
 
-    else if (scene == RESULT) {
+    drawPauseButton();
 
-      background(220);
+    if(pause) {
 
-      textAlign(CENTER);
+      fill(255,200);
+      rect(0,0,width,height);
 
-      textSize(40);
       fill(0);
-      text("ゲーム終了", width / 2, 180);
+      textAlign(CENTER,CENTER);
+      textSize(50);
+      text("PAUSE",width/2,150);
 
-      textSize(30);
-      text("Score : " + score.getScore(), width / 2, 250);
-
-      text("Rank : " + getRank(), width / 2, 300);
-
+      resumeButton.display();
       retryButton.display();
+      homeButton.display();
 
     }
 
+  } else if(scene == RESULT) {
+
+    image(resultImage,0,0,width,height);
+
+    fill(0);
+    textAlign(CENTER);
+
+    textSize(50);
+    text("GAME RESULT!",width/2,70);
+
+    textSize(40);
+    text(score.getScore(),width/2+40,185);
+    text(getRank(),width/2+50,260);
+
+    retryButton.display();
+    homeButton.display();
+
   }
 
-  //========================
-  // マウスを押した
-  //========================
-  void mousePressed() {
+}
 
-    if (scene == TITLE) {
+void mousePressed() {
 
-      if (startButton.isClicked()) {
+  if(scene == TITLE) {
 
-        scene = PLAY;
+    if(startButton.isClicked()) {
+
+      scene = PLAY;
+      timer.reset();
+      score.reset();
+      createTrash();
+
+    }
+
+  } else if(scene == PLAY) {
+
+    if(dist(mouseX,mouseY,width-50,70)<30) {
+
+      pause = true;
+      return;
+
+    }
+
+    if(pause) {
+
+      if(resumeButton.isClicked()) {
+
+        pause = false;
+
+      }
+
+      if(retryButton.isClicked()) {
 
         timer.reset();
         score.reset();
-
         createTrash();
+        pause = false;
 
       }
 
-    }
-
-    else if (scene == PLAY) {
-
-      if (trash != null) {
-
-        if (trash.isHit(mouseX, mouseY)) {
-          trash.startDrag();
-        }
-
-      }
-
-    }
-
-    else if (scene == RESULT) {
-
-      if (retryButton.isClicked()) {
+      if(homeButton.isClicked()) {
 
         scene = TITLE;
+        pause = false;
 
       }
 
-    }
-
-  }
-
-  //========================
-  // ドラッグ
-  //========================
-  void mouseDragged() {
-
-    if (scene == PLAY) {
-
-      if (trash != null) {
-        trash.move(mouseX, mouseY);
-      }
-
-    }
-
-  }
-
-
-  //========================
-  // マウスを離した
-  //========================
-  void mouseReleased() {
-
-    if (scene != PLAY) {
       return;
+
     }
 
-    if (trash == null) {
-      return;
-    }
+    if(trash != null) {
 
-    trash.stopDrag();
-
-    boolean enteredBox = false;
-
-    for (int i = 0; i < boxes.length; i++) {
-
-      if (boxes[i].contains(trash)) {
-
-        enteredBox = true;
-
-        if (boxes[i].isCorrect(trash)) {
-
-          score.addScore();
-
-          createTrash();
-
-        } else {
-
-          score.minusScore();
-
-          trash.resetPosition();
-
-        }
-
-        break;
-
+      if(trash.isHit(mouseX,mouseY)) {
+        trash.startDrag();
       }
 
     }
 
-    // ゴミ箱に入らなかった場合
-    if (!enteredBox) {
+  } else if(scene == RESULT) {
 
-      trash.resetPosition();
+    if(retryButton.isClicked()) {
+
+      scene = PLAY;
+      timer.reset();
+      score.reset();
+      createTrash();
+
+    }
+
+    if(homeButton.isClicked()) {
+
+      scene = TITLE;
 
     }
 
   }
 
+}
 
-  //========================
-  // ゴミ生成
-  //========================
-  void createTrash() {
+void mouseDragged() {
 
-    int index = int(random(trashNames.length));
+  if(scene == PLAY && pause == false) {
 
-    trash = new Trash(
+    if(trash != null) {
 
-      trashNames[index],
+      trash.move(mouseX,mouseY);
 
-      trashTypes[index],
-
-      width / 2,
-
-      250
-
-    );
+    }
 
   }
 
+}
 
-  //========================
-  // ランク取得
-  //========================
-  String getRank() {
+void mouseReleased() {
 
-    int s = score.getScore();
+  if(scene != PLAY || pause) {
+    return;
+  }
 
-    if (s >= 30) {
-      return "S";
+  if(trash == null) {
+    return;
+  }
+
+  trash.stopDrag();
+
+  boolean enteredBox = false;
+
+  for(int i=0;i<boxes.length;i++) {
+
+    if(boxes[i].contains(trash)) {
+
+      enteredBox = true;
+
+      if(boxes[i].isCorrect(trash)) {
+
+        score.addScore();
+        createTrash();
+
+      } else {
+
+        score.minusScore();
+        trash.resetPosition();
+
+      }
+
+      break;
+
     }
-
-    if (s >= 25) {
-      return "A";
-    }
-
-    if (s >= 20) {
-      return "B";
-    }
-
-    if (s >= 10) {
-      return "C";
-    }
-
-    return "D";
 
   }
+
+  if(!enteredBox) {
+
+    trash.resetPosition();
+
+  }
+
+}
+
+void createTrash() {
+
+  int index = int(random(trashNames.length));
+
+trash = new Trash(
+
+  trashNames[index],
+
+  trashTypes[index],
+
+  trashImages[index],
+
+  width/2,
+
+  250
+
+);
+
+}
+
+String getRank() {
+
+  int s = score.getScore();
+
+  if(s >= 30) {
+    return "S";
+  }
+
+  if(s >= 25) {
+    return "A";
+  }
+
+  if(s >= 20) {
+    return "B";
+  }
+
+  if(s >= 10) {
+    return "C";
+  }
+
+  return "D";
+
+}
+
+void drawPauseButton() {
+
+ 
+
+}
 
 }

@@ -21,10 +21,12 @@ class Timer {
     if (remain < 0) {
       remain = 0;
     }
+textSize(40);
+fill(0);
 
-    textSize(30);
-    fill(0);
-    text("残り時間 : " + remain, 20, 40);
+textAlign(CENTER, TOP);
+
+text(remain, width / 2 -5, 30);
   }
 
   boolean isFinish() {

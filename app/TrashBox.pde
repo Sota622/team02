@@ -14,38 +14,6 @@ class TrashBox {
 
   // ゴミ箱を表示
   void display() {
-
-    stroke(0);
-    strokeWeight(2);
-
-    if (type == 0) {
-      fill(255, 180, 180);
-    } else if (type == 1) {
-      fill(180);
-    } else if (type == 2) {
-      fill(180, 255, 180);
-    } else if (type == 3) {
-      fill(180, 220, 255);
-    }
-
-    rect(x, y, w, h);
-
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(16);
-
-    if (type == 0) {
-      text("燃える", x + w / 2, y + h / 2);
-
-    } else if (type == 1) {
-      text("燃えない", x + w / 2, y + h / 2);
-
-    } else if (type == 2) {
-      text("缶・びん", x + w / 2, y + h / 2);
-
-    } else if (type == 3) {
-      text("資源", x + w / 2, y + h / 2);
-    }
   }
 
   // ゴミ箱の中に入っているか

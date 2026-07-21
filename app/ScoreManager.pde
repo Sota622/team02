@@ -26,9 +26,19 @@ class ScoreManager {
 
   // 表示
   void display() {
-    textSize(30);
-    fill(0);
-    text("Score : " + score, 20, 50);
-  }
+
+  // スコアの背景
+  fill(255, 255, 255, 180);
+  rect(20, 20, 180, 50);
+
+
+  // スコア文字
+  fill(0);
+  textSize(30);
+  textAlign(LEFT, CENTER);
+
+  text("Score :   " + score, 30, 45);
+
+}
 
 }
