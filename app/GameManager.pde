@@ -28,6 +28,9 @@ String[] trashNames = {
   "マスク",
   "衣類",
   "割り箸",
+  "落ち葉",
+  "紙コップ",
+  "ゴム手袋",
   "フライパン",
   "乾電池",
   "空き缶",
@@ -41,6 +44,9 @@ String[] trashImages = {
 "マスク.png",
 "衣類.png",
 "割り箸.png",
+"落ち葉.png",
+"紙コップ.png",
+"ゴム手袋.png",
 "フライパン.png",
 "乾電池.png",
 "空き缶.png",
@@ -50,6 +56,9 @@ String[] trashImages = {
 };
 
 int[] trashTypes = {
+  0,
+  0,
+  0,
   0,
   0,
   0,
