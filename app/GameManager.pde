@@ -25,6 +25,9 @@ boolean pause = false;
 String[] trashNames = {
   "生ごみ",
   "ティッシュ",
+  "マスク",
+  "衣類",
+  "割り箸",
   "フライパン",
   "乾電池",
   "空き缶",
@@ -35,6 +38,9 @@ String[] trashNames = {
 String[] trashImages = {
 "生ごみ.png",
 "ティッシュ.png",
+"マスク.png",
+"衣類.png",
+"割り箸.png",
 "フライパン.png",
 "乾電池.png",
 "空き缶.png",
@@ -44,6 +50,9 @@ String[] trashImages = {
 };
 
 int[] trashTypes = {
+  0,
+  0,
+  0,
   0,
   0,
   1,
