@@ -123,13 +123,13 @@ GameManager() {
 
   trash = null;
 
-  startButton = new Button(320,388,175,90,"START");
+  startButton = new Button(230,310,350,90,"START");
 
-resumeButton = new Button(300,300,200,60,"RESUME");
+resumeButton = new Button(300,300,210,60,"RESUME");
 
-retryButton = new Button(300,378,200,62,"RETRY");
+retryButton = new Button(300,375,210,62,"RETRY");
 
-homeButton = new Button(300,450,200,60,"HOME");
+homeButton = new Button(300,450,210,60,"HOME");
 }
 
 void update() {
@@ -151,7 +151,7 @@ void display() {
   if(scene == TITLE) {
 
     image(titleImage,0,0,width,height);
-    startButton.display();
+    
 
   } else if(scene == PLAY) {
 
