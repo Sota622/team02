@@ -333,6 +333,7 @@ void mousePressed() {
     if(dist(mouseX,mouseY,width-50,70)<30) {
 
       pause = true;
+      timer.pause();
       return;
 
     }
@@ -342,6 +343,7 @@ void mousePressed() {
       if(resumeButton.isClicked()) {
 
         pause = false;
+        timer.resume();
 
       }
 
